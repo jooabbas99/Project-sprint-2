@@ -81,7 +81,7 @@ EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData);
 /**
  * @brief Takes the maximum allowed amount and stores it into terminal data.
  * @param termData Stores the value of the maximum amount to be performed by the terminal.
- * @param maxAmount The maximum amount to be peroformed by the terminal.
+ * @param maxAmount The maximum amount to be performed by the terminal.
  * @return INVALID_MAX_AMOUNT If the transaction amount is less than or equal 0.
  * @return TERMINAL_OK If the transaction amount is valid.
  */

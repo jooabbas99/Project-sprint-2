@@ -192,7 +192,7 @@ void getTransactionDateTest(void) {
  */
 void isCardExpiredTest(void) {
     printf("Tester name: Khaled Mustafa\n"
-           "Function Name: getTransactionDate\n");
+           "Function Name: isCardExpired\n");
 
     getTransactionDate(&terminalData_test);
 
@@ -240,7 +240,7 @@ void isCardExpiredTest(void) {
  */
 void getTransactionAmountTest(void) {
     printf("Tester name: Khaled Mustafa\n"
-           "Function Name: getTransactionDate\n");
+           "Function Name: getTransactionAmount\n");
 
     printf("Test case #1\n");
     printf("Input date: 1\n");
@@ -270,7 +270,7 @@ void getTransactionAmountTest(void) {
  */
 void isBelowMaxAmountTest(void) {
     printf("Tester name: Khaled Mustafa\n"
-           "Function Name: getTransactionDate\n");
+           "Function Name: isBelowMaxAmount\n");
 
     terminalData_test.maxTransAmount = 10000;
 
@@ -305,7 +305,7 @@ void isBelowMaxAmountTest(void) {
  */
 void setMaxAmountTest(void) {
     printf("Tester name: Khaled Mustafa\n"
-           "Function Name: getTransactionDate\n");
+           "Function Name: setMaxAmount\n");
 
     printf("Test case #1\n");
     float maxAmount_test_1 = 0;
