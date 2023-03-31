@@ -4,5 +4,8 @@
 
 #ifndef PROJECT_SPRINT_2_APP_H
 #define PROJECT_SPRINT_2_APP_H
+#include "../Card/card.h"
+#include "../Terminal/terminal.h"
+
 void appStart(void);
 #endif //PROJECT_SPRINT_2_APP_H

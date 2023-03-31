@@ -1,0 +1,7 @@
+# ninja log v5
+1	533	1680271502193324908	CMakeFiles/Project_sprint_2.dir/Application/app.c.o	4c81304cdf9df2c1
+1	533	1680271502193315281	CMakeFiles/Project_sprint_2.dir/Server/server.c.o	7f3f8b9eca76d9f9
+1	534	1680271502193318833	CMakeFiles/Project_sprint_2.dir/Terminal/terminal.c.o	e2e1ffd5070a17ee
+1	534	1680271502193321539	CMakeFiles/Project_sprint_2.dir/Card/card.c.o	518cd55ea98e0b7a
+0	584	1680271502253031154	CMakeFiles/Project_sprint_2.dir/main.c.o	ca6315f9c9b6b701
+584	695	1680271502363924913	Project_sprint_2	f6806a57cc774c80
