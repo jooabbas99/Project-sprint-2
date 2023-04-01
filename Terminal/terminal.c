@@ -318,7 +318,7 @@ void setMaxAmountTest(void) {
 
     printf("Test case #2\n");
     float maxAmount_test_2 = -1;
-    printf("Input date: 0\n");
+    printf("Input date: -1\n");
     printf("Expected result: INVALID_MAX_AMOUNT\n");
     programState_test = setMaxAmount(&terminalData_test, maxAmount_test_2);
     printf("Actual result: %s.\n", terminalError_test[programState_test]);
@@ -327,7 +327,7 @@ void setMaxAmountTest(void) {
 
     printf("Test case #2\n");
     float maxAmount_test_3 = 1;
-    printf("Input date: 0\n");
+    printf("Input date: 1\n");
     printf("Expected result: TERMINAL_OK\n");
     programState_test = setMaxAmount(&terminalData_test, maxAmount_test_3);
     printf("Actual result: %s.\n", terminalError_test[programState_test]);
