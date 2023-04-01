@@ -1,6 +1,12 @@
 #include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+#include "Application/app.h"
+#include "Server/server.h"
+
 
 int main() {
-    printf("Hello, World!\n");
+    while (1)
+        appStart();
     return 0;
 }

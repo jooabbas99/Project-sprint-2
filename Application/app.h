@@ -4,5 +4,5 @@
 
 #ifndef PROJECT_SPRINT_2_APP_H
 #define PROJECT_SPRINT_2_APP_H
-
+void appStart(void);
 #endif //PROJECT_SPRINT_2_APP_H
