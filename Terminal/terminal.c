@@ -49,14 +49,22 @@ EN_terminalError_t __isTimeFormatted(char *timeString) {
  */
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData) {
     /* Calculates the number of seconds that have passed since January 1st, 1970. */
-    time_t t = time(NULL);
-    struct tm *tm = localtime(&t);
-    char date[11];
-    strftime(date, sizeof(date), "%d/%m/%Y", tm);
-    strcat((char *)termData->transactionDate,date);
+    time_t currentTime = time(NULL);
+    /* Breaks down the number of seconds passed to it into different formats. */
+    struct tm *currentClock = localtime(&currentTime);
+
+//    printf("DD: %d\n", currentClock -> tm_mday);
+//    printf("MM: %d\n", currentClock -> tm_mon + 1);
+//    printf("YY: %d\n", currentClock -> tm_year + 1900);
+
+    char current_time_string[11];
+    /* Puts the currentClock in the specified format. */
+    strftime(current_time_string, 100, "%d/%m/%Y", currentClock);
+    strcpy((char *)termData -> transactionDate, current_time_string);
+//    printf("%s\n", termData -> transactionDate);
 
     /* Checks the format of the time. */
-    return __isTimeFormatted(date);
+    return __isTimeFormatted(current_time_string);
 }
 
 /**
@@ -83,7 +91,7 @@ EN_terminalError_t isCardExpired(ST_cardData_t *cardData, ST_terminalData_t *ter
     if (cardYear - currentYear > 0) {
         return TERMINAL_OK;
     } else {
-        if (cardMonth - currentMonth > 0) {
+        if (cardMonth - currentMonth > 0 && (cardYear - currentYear) == 0) {
             return TERMINAL_OK;
         } else {
             return EXPIRED_CARD;

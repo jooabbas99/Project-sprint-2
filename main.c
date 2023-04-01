@@ -3,10 +3,13 @@
 #include <string.h>
 #include "Application/app.h"
 #include "Server/server.h"
+#include "Terminal/terminal.h"
 
 
 int main() {
-    while (1)
-        appStart();
-    return 0;
+
+    appStart();
+//    isCardExpiredTest();
+return 0;
+
 }

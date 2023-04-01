@@ -58,72 +58,76 @@
  *{100000.0,BLOCKED,"8956302301546840"}
  */
 void appStart(){
-    float max_amount ;
+    while (1){
+        float max_amount ;
 
-    // Define Variables and data
-    ST_transaction_t transactionData;
+        // Define Variables and data
+        ST_transaction_t transactionData;
 
-    // CARD
-    printf("\n\t\t\t\tNew Transaction\n");
-    while(getCardHolderName(&transactionData.cardHolderData)==WRONG_NAME){
-        printf("WRONG NAME FORMAT");
-    }
-    while(getCardExpiryDate(&transactionData.cardHolderData)==WRONG_EXP_DATE){
-        printf("WRONG_EXP_DATE");
-    }
-    while(getCardPAN(&transactionData.cardHolderData)==WRONG_PAN){
-        printf("WRONG_PAN");
-    }
-    // TERMINAL
-    // set terminal maxaamount
-    do{
-        printf("Setup MAX AMOUNT for POS Device :");
-        scanf(" %f",&max_amount);
-    } while (setMaxAmount(&transactionData.terminalData,max_amount) == INVALID_MAX_AMOUNT);
+        // CARD
+        printf("\n\t\t\t\tNew Transaction\n");
+        while(getCardHolderName(&transactionData.cardHolderData)==WRONG_NAME){
+            printf("WRONG NAME FORMAT\n");
+        }
+        while(getCardExpiryDate(&transactionData.cardHolderData)==WRONG_EXP_DATE){
+            printf("WRONG_EXP_DATE\n");
+        }
+        while(getCardPAN(&transactionData.cardHolderData)==WRONG_PAN){
+            printf("WRONG_PAN\n");
+        }
+        // TERMINAL
+        // set terminal maxaamount
+        do{
+            printf("Setup MAX AMOUNT for POS Device :");
+            scanf(" %f",&max_amount);
+        } while (setMaxAmount(&transactionData.terminalData,max_amount) == INVALID_MAX_AMOUNT);
 
-    // get transaction date
-    while(getTransactionDate(&transactionData.terminalData)==WRONG_DATE) {
-        printf("WRONG_DATE");
-    }
-    // check card expires
-    if(isCardExpired(&transactionData.cardHolderData,&transactionData.terminalData)==EXPIRED_CARD){
-        printf("TRANSACTION DECLINED : EXPIRED_CARD");
-        return;
-    }
-    // get transaction amount
+        // get transaction date
+        while(getTransactionDate(&transactionData.terminalData)==WRONG_DATE) {
+            printf("WRONG_DATE\n");
+        }
+        // check card expires
+        if(isCardExpired(&transactionData.cardHolderData,&transactionData.terminalData)!=TERMINAL_OK){
+            printf("TRANSACTION DECLINED : EXPIRED_CARD\n");
+            continue;
+        }
 
-    while(getTransactionAmount(&transactionData.terminalData)==INVALID_AMOUNT) {
-        printf("INVALID_AMOUNT");
-    }
-    // check if amount exceeded
+        // get transaction amount
 
-    if(isBelowMaxAmount(&transactionData.terminalData)==EXCEED_MAX_AMOUNT){
-        printf("EXCEED_MAX_AMOUNT");
-        return;
-    }
+        while(getTransactionAmount(&transactionData.terminalData)==INVALID_AMOUNT) {
+            printf("INVALID_AMOUNT\n");
+        }
+        // check if amount exceeded
 
-    // SERVER
-    // check account validation
-    switch (recieveTransactionData(&transactionData)) {
-        case FRAUD_CARD:
-            printf("FRAUD_CARD");
-            break;
-        case DECLINED_STOLEN_CARD:
-            printf("DECLINED_STOLEN_CARD");
-            break;
-        case DECLINED_INSUFFECIENT_FUND:
-            printf("DECLINED_INSUFFECIENT_FUND");
-            break;
-        case INTERNAL_SERVER_ERROR:
-            printf("INTERNAL_SERVER_ERROR");
-            break;
-        case APPROVED:
-            printf("APPROVED");
-            listSavedTransactions();
-            break;
-        default:
-            printf("SERVER ERROR");
-            break;
+        if(isBelowMaxAmount(&transactionData.terminalData)==EXCEED_MAX_AMOUNT){
+            printf("EXCEED_MAX_AMOUNT\n");
+            continue;
+        }
+
+        // SERVER
+        // check account validation
+        switch (recieveTransactionData(&transactionData)) {
+            case FRAUD_CARD:
+                printf("FRAUD_CARD\n");
+                break;
+            case DECLINED_STOLEN_CARD:
+                printf("DECLINED_STOLEN_CARD\n");
+                break;
+            case DECLINED_INSUFFECIENT_FUND:
+                printf("DECLINED_INSUFFECIENT_FUND\n");
+                break;
+            case INTERNAL_SERVER_ERROR:
+                printf("INTERNAL_SERVER_ERROR\n");
+                break;
+            case APPROVED:
+                printf("APPROVED\n");
+                listSavedTransactions();
+                break;
+            default:
+                printf("SERVER ERROR\n");
+                break;
+        }
+
     }
 
 }
